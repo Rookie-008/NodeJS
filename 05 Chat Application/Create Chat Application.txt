@@ -1,0 +1,9 @@
+Create Application Chat
+
+1. create directory
+2. Install Package json
+   $ npm init
+   $ npm install express --save
+   $ npm install socket.io
+   
+

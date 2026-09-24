@@ -1,0 +1,6 @@
+Installation and Running Server Node.JS
+
+1. Menginisialisasi Project Node.js
+   $ npm init
+   $ npm init --yes
+   $ npm i -s express

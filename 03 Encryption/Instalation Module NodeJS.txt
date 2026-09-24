@@ -1,0 +1,6 @@
+Instalation Module NodeJS
+
+$ nodejs
+$ npm init -y
+$ npm install <nodejs-nane-module>
+  example : $ npm install crypto-js

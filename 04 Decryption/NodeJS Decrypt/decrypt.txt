@@ -1,0 +1,20 @@
+const crypto = require('crypto');
+
+// Encryption key and initialization vector
+// In a real application, these would be securely stored and retrieved
+const key = Buffer.from('passwordsangatrahasia', 'hex');
+const iv = Buffer.from('passwordrahasia', 'hex');
+
+// Encrypted text (from a previous encryption)
+const encryptedText = '39ed65b6b7487d059d27206';
+
+// Create a decipher
+const algorithm = 'aes-256-cbc';
+const decipher = crypto.createDecipheriv(algorithm, key, iv);
+
+// Decrypt the data
+let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+decrypted += decipher.final('utf8');
+
+console.log('Encrypted Text:', encryptedText);
+console.log('Decrypted Text:', decrypted); 

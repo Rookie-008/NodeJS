@@ -1,0 +1,24 @@
+const crypto = require('crypto');
+
+// Generate encryption key and initialization vector
+// In a real application, you would securely store and retrieve these values
+const key = crypto.randomBytes(32); // Key for AES-256 (32 bytes)
+const iv = crypto.randomBytes(16); // IV for AES (16 bytes)
+
+// Create a cipher
+const algorithm = 'aes-256-cbc';
+const cipher = crypto.createCipheriv(algorithm, key, iv);
+
+// Data to encrypt
+const plainText = 'PASSWORD SANGAT RAHASIA';
+
+// Encrypt the data
+let encrypted = cipher.update(plainText, 'utf8', 'hex');
+encrypted += cipher.final('hex');
+
+console.log('Original Text:', plainText);
+console.log('Encrypted Text:', encrypted);
+console.log('Key (hex):', key.toString('hex'));
+console.log('IV (hex):', iv.toString('hex'));
+
+// The encrypted message, key, and IV would be needed for decryption 
