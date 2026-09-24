@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Socket io Node JS</title>
+
+	<style media="screen">
+		form {
+			position: absolute;
+			bottom: 0px;
+			width: 100%;
+			background: seagreen;
+			padding: 20px;
+		}
+
+		li {
+			padding: 10px;
+		}
+
+		li:nth-child(even) {
+			/*background-color: #42f563;*/
+			background: #42f563;
+			color: white;
+		}
+
+		li:nth-child(odd) {
+			/*background-color: #42f563;*/
+		}
+
+		#name_user {
+			float: left; 
+			width: 25%; 
+			height: 30px;
+			border: none;
+		}
+
+		#text_box {
+			float: left; 
+			width: 50%; 
+			height: 30px;
+			border: none;
+			margin-left: 15px;
+		}
+
+		button {
+			float: left;
+			width: 20%;
+			height: 35px;
+		}
+	</style>
+</head>
+<body>
+
+	<ul id="messages"></ul>
+
+	<form>
+		<input type="text" id="name_user" placeholder="username">
+		<input type="text" id="text_box" placeholder="write chat"> <button> Send </button>
+	</form>	
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<script>
+	var socket   = io();
+	var username = '';
+
+	$('form').submit(function() {
+		username = $('#name_user').val();
+		socket.emit('newMessage', username + ' ' + $('#text_box').val());
+		$('#text_box').val('');
+		return false;
+	});
+
+	// Show Mesage
+	socket.on('newMessage', function(msg) {
+		// $('#messages').append($('<li>').text(username + ' ----> ' + msg + ' || Time ' + Date()));
+		$('#messages').append($('<li>').text(msg + ' || Time ' + Date()));
+	});
+</script>
+
+</body>
+</html>
